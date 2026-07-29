@@ -1,0 +1,9 @@
+package main
+import ("fmt"
+//"math/rand"
+//"math"
+)
+
+func main(){
+	fmt.Print("Ola desgraca")
+}
