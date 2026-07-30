@@ -1,9 +1,6 @@
 module jogodacobr.go
 
 go 1.26.1
-module jogodacobra
-
-go 1.26.1
 
 require (
 	github.com/ebitengine/gomobile v0.0.0-20250923094054-ea854a63cce1 // indirect
@@ -14,4 +11,3 @@ require (
 	golang.org/x/sync v0.17.0 // indirect
 	golang.org/x/sys v0.36.0 // indirect
 )
-10ca4244f1f4f493b9ceca65c0816e17a15322f8
