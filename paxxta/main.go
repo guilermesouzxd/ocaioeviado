@@ -31,13 +31,13 @@ type Game struct {
 // Update contém a lógica do jogo (roda 60 vezes por segundo)
 func (g *Game) Update() error {
 	// 1. Controle de direção pelas setas do teclado
-	if ebiten.IsKeyPressed(ebiten.KeyArrowUp) && g.dir.y != 1 {
+	if ebiten.IsKeyPressed(ebiten.KeyW) && g.dir.y != 1 {
 		g.dir = Point{0, -1}
-	} else if ebiten.IsKeyPressed(ebiten.KeyArrowDown) && g.dir.y != -1 {
+	} else if ebiten.IsKeyPressed(ebiten.KeyA) && g.dir.y != -1 {
 		g.dir = Point{0, 1}
-	} else if ebiten.IsKeyPressed(ebiten.KeyArrowLeft) && g.dir.x != 1 {
+	} else if ebiten.IsKeyPressed(ebiten.KeyS) && g.dir.x != 1 {
 		g.dir = Point{-1, 0}
-	} else if ebiten.IsKeyPressed(ebiten.KeyArrowRight) && g.dir.x != -1 {
+	} else if ebiten.IsKeyPressed(ebiten.KeyD) && g.dir.x != -1 {
 		g.dir = Point{1, 0}
 	}
 
