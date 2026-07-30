@@ -43,7 +43,7 @@ func (g *Game) Update() error {
 
 	// 2. Controle de velocidade (a cobra move a cada 10 frames)
 	g.ticks++
-	if g.ticks < 1 {
+	if g.ticks < 10 {
 		return nil
 	}
 	g.ticks = 0
