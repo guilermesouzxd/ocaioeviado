@@ -33,9 +33,9 @@ func (g *Game) Update() error {
 	// 1. Controle de direção pelas setas do teclado
 	if ebiten.IsKeyPressed(ebiten.KeyW) && g.dir.y != 1 {
 		g.dir = Point{0, -1}
-	} else if ebiten.IsKeyPressed(ebiten.KeyA) && g.dir.y != -1 {
+	} else if ebiten.IsKeyPressed(ebiten.KeyS) && g.dir.y != -1 {
 		g.dir = Point{0, 1}
-	} else if ebiten.IsKeyPressed(ebiten.KeyS) && g.dir.x != 1 {
+	} else if ebiten.IsKeyPressed(ebiten.KeyA) && g.dir.x != 1 {
 		g.dir = Point{-1, 0}
 	} else if ebiten.IsKeyPressed(ebiten.KeyD) && g.dir.x != -1 {
 		g.dir = Point{1, 0}
@@ -43,7 +43,7 @@ func (g *Game) Update() error {
 
 	// 2. Controle de velocidade (a cobra move a cada 10 frames)
 	g.ticks++
-	if g.ticks < 10 {
+	if g.ticks < 1 {
 		return nil
 	}
 	g.ticks = 0
