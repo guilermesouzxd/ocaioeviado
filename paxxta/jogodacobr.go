@@ -18,12 +18,12 @@ func main() {
 		impr[cont] = "*"
 	}
 
-	for cont = 0; cont < tamAr; cont++ {
-		for contA = backup - 1; contA >= 0; contA++ {
+	for cont = 0; cont < backup; cont++ {
+		fmt.Println()
+		for contA = 0; contA < tamAr; contA++ {
 			fmt.Print(impr[contA])
 		}
-		backup--
-		fmt.Println()
+		tamAr--
 	}
 
 	fmt.Println(" Nao odeio negros e judeus")
