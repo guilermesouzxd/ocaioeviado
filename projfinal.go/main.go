@@ -1,4 +1,4 @@
-package projfinalgo
+package main
 
 import (
 	"image/color"
