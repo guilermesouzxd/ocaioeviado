@@ -38,6 +38,7 @@ type Game struct {
 	food  Point
 	ticks int
 	score int
+	speed int
 }
 
 // Update contém a lógica do jogo (roda 60 vezes por segundo)
@@ -73,11 +74,10 @@ func (g *Game) Update() error {
 
 		// 2. Controle de velocidade (a cobra move a cada 10 frames)
 		g.ticks++
-		if g.ticks < 10 {
+		if g.ticks < g.speed {
 			return nil
 		}
 		g.ticks = 0
-
 		// 3. Calcular a nova posição da cabeça da cobra
 		head := g.snake[0]
 		newHead := Point{head.x + g.dir.x, head.y + g.dir.y}
@@ -98,7 +98,10 @@ func (g *Game) Update() error {
 		//7. funcao de comer
 		if newHead == g.food {
 			g.score += 10
-			g.food = Point{rand.Intn(screenWidth / gridSize), rand.Intn(screenHeight / gridSize)}
+			if g.score%50 == 0 && g.speed > 3 {
+				g.speed--
+			}
+			g.spawnFood()
 		} else {
 			// Remove a ponta da cauda se não comeu a maçã (para não crescer infinitamente)
 			g.snake = g.snake[:len(g.snake)-1]
@@ -147,9 +150,33 @@ func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
 // reset volta o jogo para o estado inicial
 func (g *Game) reset() {
 	g.score = 0
+	g.speed = 10
 	g.snake = []Point{{16, 12}} // Cobra começa no meio
 	g.dir = Point{1, 0}         // Começa andando para a direita
 	g.food = Point{rand.Intn(screenWidth / gridSize), rand.Intn(screenHeight / gridSize)}
+	g.spawnFood()
+}
+func (g *Game) spawnFood() {
+	for { // coordenadas de spawn da maçã
+		g.food = Point{
+			x: rand.Intn(screenWidth / gridSize),
+			y: rand.Intn(screenHeight / gridSize),
+		}
+
+		// Checa se a nova posição caiu em cima da cobra
+		emCimaDaCobra := false
+		for _, p := range g.snake {
+			if p == g.food {
+				emCimaDaCobra = true
+				break // Para a verificação, já sabemos que deu ruim
+			}
+		}
+
+		// Se NÃO estiver em cima da cobra, a posição é válida!
+		if !emCimaDaCobra {
+			break // Sai do loop infinito
+		}
+	}
 }
 
 func main() {
