@@ -99,7 +99,7 @@ func (g *Game) Update() error {
 		if newHead == g.food {
 			g.score += 10
 			if g.score%50 == 0 && g.speed > 3 {
-				g.speed--
+				g.speed -= 2
 			}
 			g.spawnFood()
 		} else {
